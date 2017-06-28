@@ -73,6 +73,11 @@ module.exports = function processEachRecord(options) {
           return;
         }
 
+        // If field is already a parsed object, don't attempt to parse again
+        if (typeof(record[columnName]) === 'object') {
+          return;
+        }
+
         // But otherwise, assume it's a JSON string and try to parse it
         record[columnName] = JSON.parse(record[columnName]);
       }
